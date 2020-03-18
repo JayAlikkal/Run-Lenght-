@@ -1,0 +1,53 @@
+import java.util.Scanner;
+public class Main
+{
+	public static void main(String[] args) {
+
+	System.out.println("Enter a sequence of integers separated by spaces:");
+		Scanner input = new Scanner(System.in);
+		String inSeq = input.nextLine();
+		inSeq = inSeq.trim();
+
+		if (inSeq.length() > 0) {
+		
+			int numStart = 0;
+		
+			int numEnd = inSeq.indexOf(' ');
+
+			
+			int lastNum = Integer.parseInt(inSeq.substring(numStart, numEnd));
+		
+			int curNum = lastNum;
+		
+			int numOccurs = 1;
+			
+			String outSeq = "";
+
+			do {
+			
+				numStart = numEnd+1;
+				numEnd = inSeq.indexOf(' ', numStart);
+				
+				if (numEnd == -1)
+					numEnd = inSeq.length();
+			
+				curNum = Integer.parseInt(inSeq.substring(numStart, numEnd));
+				
+				if (curNum == lastNum)
+					numOccurs++;
+				else {
+										
+					outSeq = outSeq + lastNum + ' ' + numOccurs + ' ';
+					lastNum = curNum;
+					numOccurs = 1;
+				}
+			} while (numEnd < inSeq.length());
+
+		
+			outSeq = outSeq + lastNum + ' ' + numOccurs + ' ';
+			System.out.println("Run length encoder output:");
+			System.out.println(outSeq);
+		}
+	}
+
+}
